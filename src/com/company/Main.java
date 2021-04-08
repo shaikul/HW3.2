@@ -11,10 +11,16 @@ public class Main {
         while (true) try {
             System.out.println("Введите сумму снятия");
             bankAccount.setwithDraw(scanner.nextInt());
-            System.out.println(" Введите вносимую");
-            bankAccount.setdeposit(Double.parseDouble(scanner.next()));
+
         }catch (LimitException ie){
             System.out.println(ie.getMessage());
+            System.out.println("У вас получилось снять " + bankAccount.getAmount());
+            try {
+                bankAccount.setwithDraw((int) bankAccount.getAmount());
+            } catch (LimitException e) {
+                e.printStackTrace();
+            }
+            break;
         }
 
 
